@@ -5,7 +5,7 @@ import React from "react";
 interface People {
   id: number;
   lastName: string;
-  firstName: string;
+  firstName: string | null;
   age: number | null;
   house: string;
   title: string;
@@ -209,7 +209,7 @@ const Table = () => {
 
 	return (
 		<Container maxWidth="lg" sx={{paddingTop: "20px"}}>
-			<DataGrid
+      <DataGrid
 				rows={People}
 				columns={columns}
 				disableColumnSelector
@@ -221,8 +221,14 @@ const Table = () => {
             },
           },
         }}
-				autoHeight
-				getRowId={(row) => row.id}
+        autoHeight
+        getRowId={(row) => row.id}
+        sx={{
+          // Modificar el color del header
+          "& .MuiDataGrid-columnHeader": {
+            backgroundColor: "#3f51b5",
+          },
+        }}
 			/>
 		</Container>
 	);
